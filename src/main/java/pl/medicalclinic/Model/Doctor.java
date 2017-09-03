@@ -21,4 +21,7 @@ public class Doctor implements Serializable{
     private String password;
     @Column(name = "email", unique = true)
     private String email;
+    @OneToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_user")
+    private String idUser;
 }

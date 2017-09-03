@@ -5,7 +5,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
 @Service
-public class PatientService {
+public class UserService {
     public final boolean isValidEmail(String email){
         boolean result = true;
             try{

@@ -6,25 +6,24 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
-import pl.medicalclinic.DAO.PatientsRepository;
-import pl.medicalclinic.DTO.LoginDto;
-import pl.medicalclinic.DTO.RegistrationDto;
-import pl.medicalclinic.Model.Patient;
-import pl.medicalclinic.Services.PatientService;
+import pl.medicalclinic.DAO.UsersRepository;
+import pl.medicalclinic.DTO.UserDto;
+import pl.medicalclinic.Model.User;
+import pl.medicalclinic.Services.UserService;
 
 @Controller
 public class LoginController {
     @Autowired
-    private PatientsRepository patientsRepository;
+    private UsersRepository usersRepository;
     @Autowired
-    private PatientService patientService;
+    private UserService userService;
 
 
     @RequestMapping("/login")
-    public String logIn(HttpServletRequest request,  @ModelAttribute("loginDto") LoginDto loginDto, Model model){
+    public String logIn(HttpServletRequest request, @ModelAttribute("userDto") UserDto userDto, Model model){
         if(request.getMethod().equalsIgnoreCase("post")){
-            Patient patient = patientsRepository.findByLoginAndPassword(loginDto.getUsername(), loginDto.getPassword());
-            if(patient!=null && patient.getLogin().equals(loginDto.getUsername())){
+            User user = usersRepository.findByUsernameAndPassword(userDto.getUsername(), userDto.getPassword());
+            if(user!=null && user.getUsername().equals(userDto.getUsername())){
                 return "redirect:/";
             }
         }
@@ -32,16 +31,16 @@ public class LoginController {
     }
 
     @RequestMapping("/register")
-    public String logIn(HttpServletRequest request,  @ModelAttribute("registrationDto") RegistrationDto registrationDto, Model model){
+    public String register(HttpServletRequest request,  @ModelAttribute("userDto") UserDto userDto, Model model){
         if(request.getMethod().equalsIgnoreCase("post")){
-            if (patientService.isValidNewAccount(registrationDto.getUsername(), registrationDto.getPassword(), registrationDto.getEmail())){
-                if(patientsRepository.findByLogin(registrationDto.getUsername()) == null && patientsRepository.findByEmail(registrationDto.getEmail()) == null) {
-                    Patient patient = new Patient();
-                    patient.setLogin(registrationDto.getUsername());
-                    patient.setPassword(registrationDto.getPassword());
-                    patient.setEmail(registrationDto.getEmail());
-                    patient = patientsRepository.save(patient);
-                    if (patient.getId() != null) {
+            if (userService.isValidNewAccount(userDto.getUsername(), userDto.getPassword(), userDto.getEmail())){
+                if(usersRepository.findByUsername(userDto.getUsername()) == null && usersRepository.findByEmail(userDto.getEmail()) == null) {
+                    User user = new User();
+                    user.setUsername(userDto.getUsername());
+                    user.setPassword(userDto.getPassword());
+                    user.setEmail(userDto.getEmail());
+                    user = usersRepository.save(user);
+                    if (user.getId() != null) {
                         return "redirect:/";
                     }
                 }

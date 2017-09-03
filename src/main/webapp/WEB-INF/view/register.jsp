@@ -13,7 +13,7 @@
 <body>
 <div class="login-page">
     <div class="form">
-        <form:form method="POST" modelAttribute="registrationDto" action="/register">
+        <form:form method="POST" modelAttribute="userDto" action="/register">
             <form:input type="text" path="username" placeholder="Nazwa" id="registerUsername"/>
             <form:input type="password" path="password" placeholder="Haslo" id="registerPassword"/>
             <form:input type="email" path="email" placeholder="Email" id="registerEmail"/>

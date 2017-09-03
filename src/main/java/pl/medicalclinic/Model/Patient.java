@@ -21,4 +21,7 @@ public class Patient {
     private String email;
     @Column(name="phone_number")
     private String phoneNumber;
+    @OneToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_user")
+    private String idUser;
 }

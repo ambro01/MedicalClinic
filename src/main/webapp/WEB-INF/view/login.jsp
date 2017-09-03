@@ -12,7 +12,7 @@
 <body>
 <div class="login-page">
     <div class="form">
-        <form:form method="POST" modelAttribute="loginDto" action="/login">
+        <form:form method="POST" modelAttribute="userDto" action="/login">
             <form:input type="text" path="username" placeholder="Login" id="loginUsername"/>
             <form:input type="password" path="password" placeholder="Haslo" id="loginPassword"/>
             <button id="loginButton">login</button>
