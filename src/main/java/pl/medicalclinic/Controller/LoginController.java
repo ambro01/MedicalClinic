@@ -21,29 +21,29 @@ public class LoginController {
 
 
     @RequestMapping("/login")
-        public String logIn(HttpServletRequest request,  @ModelAttribute("loginDto") LoginDto loginDto, Model model){
+    public String logIn(HttpServletRequest request,  @ModelAttribute("loginDto") LoginDto loginDto, Model model){
         if(request.getMethod().equalsIgnoreCase("post")){
             Patient patient = patientsRepository.findByLoginAndPassword(loginDto.getUsername(), loginDto.getPassword());
             if(patient!=null && patient.getLogin().equals(loginDto.getUsername())){
                 return "redirect:/";
             }
         }
-        return null;
+        return "login";
     }
 
     @RequestMapping("/register")
     public String logIn(HttpServletRequest request,  @ModelAttribute("registrationDto") RegistrationDto registrationDto, Model model){
         if(request.getMethod().equalsIgnoreCase("post")){
-            patientService.isValidNewAccount(registrationDto.getUsername(), registrationDto.getPassword(), registrationDto.getEmail())
-            {
-                Patient patient = new Patient();
-                patient.setLogin(registrationDto.getUsername());
-                patient.setPassword(registrationDto.getPassword());
-                patient.setEmail(registrationDto.getEmail());
-                patient = patientsRepository.save(patient);
-
-                if(patient.getId() != null){
-                    return "redirect:/";
+            if (patientService.isValidNewAccount(registrationDto.getUsername(), registrationDto.getPassword(), registrationDto.getEmail())){
+                if(patientsRepository.findByLogin(registrationDto.getUsername()) == null && patientsRepository.findByEmail(registrationDto.getEmail()) == null) {
+                    Patient patient = new Patient();
+                    patient.setLogin(registrationDto.getUsername());
+                    patient.setPassword(registrationDto.getPassword());
+                    patient.setEmail(registrationDto.getEmail());
+                    patient = patientsRepository.save(patient);
+                    if (patient.getId() != null) {
+                        return "redirect:/";
+                    }
                 }
             }
         }
