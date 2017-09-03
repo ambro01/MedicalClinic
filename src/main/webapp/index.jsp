@@ -3,31 +3,33 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 
-<html>
+<html lang="pl-PL">
 <head>
     <meta charset="UTF-8">
-    <title>Flat HTML5/CSS3 Login Form</title>
-    <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Medical Clinic</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 </head>
 <body>
-<div class="container-fluid" id="header">
-    <div class="container">
-        <div class="row">
-            <!-- logo -->
-            <div id="logo">
-                <a href="#">
-                    <img src="<c:url value="/resources/images/medical_clinic.png"/>" height="100px" alt="logo medical clinic">
-                </a>
-            </div>
-            <!-- nav -->
-            <div id="nav">
-                <a href="login" class="button">Log in</a>
-            </div>
+<div class="container" id="header">
+    <div class="row">
+        <div class="col-md-2">
+            <a href="#">
+                <img src="<c:url value="/resources/images/medical_clinic.png"/>" height="100px" alt="logo medical clinic">
+            </a>
+        </div>
+        <!-- nav -->
+        <div class="col-md-2 col-md-offset-4">
+            <a href="/team_doctors" class="btn btn-primary" role="button">Zespol lekarzy</a>
+        </div>
+        <div class="col-md-2">
+            <a href="/team_doctors" class="btn btn-primary" role="button">Kontakt</a>
+        </div>
+        <div class="col-md-2" >
+            <a href="/login" class="btn btn-primary" role="button">Logowanie</a>
         </div>
     </div>
 </div>
-<h2>Hello World!</h2>
+
 </body>
 </html>

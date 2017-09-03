@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Flat HTML5/CSS3 Login Form</title>
+    <title>Medical Clinic - rejestracja</title>
     <link href="<c:url value="/resources/css/login.css" />" rel="stylesheet">
 </head>
 
@@ -14,11 +14,11 @@
 <div class="login-page">
     <div class="form">
         <form:form method="POST" modelAttribute="registrationDto" action="/register">
-            <form:input type="text" path="username" placeholder="username" id="registerUsername"/>
-            <form:input type="password" path="password" placeholder="password" id="registerPassword"/>
-            <form:input type="email" path="email" placeholder="email" id="registerEmail"/>
+            <form:input type="text" path="username" placeholder="Nazwa" id="registerUsername"/>
+            <form:input type="password" path="password" placeholder="Haslo" id="registerPassword"/>
+            <form:input type="email" path="email" placeholder="Email" id="registerEmail"/>
             <button id="registerButton">create</button>
-            <p class="message">Already registered? <a href="login">Sign In</a></p>
+            <p class="message">Masz konto? <a href="login">Zaloguj sie</a></p>
         </form:form>
 
     </div>

@@ -6,17 +6,17 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Flat HTML5/CSS3 Login Form</title>
+    <title>Medical Clinic - Logowanie</title>
     <link href="<c:url value="/resources/css/login.css" />" rel="stylesheet">
 </head>
 <body>
 <div class="login-page">
     <div class="form">
         <form:form method="POST" modelAttribute="loginDto" action="/login">
-            <form:input type="text" path="username" placeholder="username" id="loginUsername"/>
-            <form:input type="password" path="password" placeholder="password" id="loginPassword"/>
+            <form:input type="text" path="username" placeholder="Login" id="loginUsername"/>
+            <form:input type="password" path="password" placeholder="Haslo" id="loginPassword"/>
             <button id="loginButton">login</button>
-            <p class="message">Not registered? <a href="register">Create an account</a></p>
+            <p class="message">Nie masz konta? <a href="register">Zarejestruj sie</a></p>
             <p id="demo"></p>
         </form:form>
     </div>
