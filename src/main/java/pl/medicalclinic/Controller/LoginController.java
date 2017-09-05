@@ -33,17 +33,8 @@ public class LoginController {
     @RequestMapping("/register")
     public String register(HttpServletRequest request,  @ModelAttribute("userDto") UserDto userDto, Model model){
         if(request.getMethod().equalsIgnoreCase("post")){
-            if (userService.isValidNewAccount(userDto.getUsername(), userDto.getPassword(), userDto.getEmail())){
-                if(usersRepository.findByUsername(userDto.getUsername()) == null && usersRepository.findByEmail(userDto.getEmail()) == null) {
-                    User user = new User();
-                    user.setUsername(userDto.getUsername());
-                    user.setPassword(userDto.getPassword());
-                    user.setEmail(userDto.getEmail());
-                    user = usersRepository.save(user);
-                    if (user.getId() != null) {
-                        return "redirect:/";
-                    }
-                }
+            if (userService.registerNewUser(userDto) != null) {
+                return "redirect:/";
             }
         }
         return "register";

@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Set;
 
 
@@ -19,10 +20,10 @@ public class User {
     private String password;
     @Column(name = "email", unique = true)
     private String email;
-    private Integer enabled;
+    private Boolean enabled;
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name="role_of_user", catalog = "medicalclinic_db",
-            joinColumns = {@JoinColumn(name="id_user", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name="id_role", nullable = false, updatable = false)})
-    private Set<Role> roles;
+    @JoinTable(name="users_roles", catalog = "medicalclinic_db",
+            joinColumns = {@JoinColumn(name="id_user", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name="id_role", referencedColumnName = "id")})
+    private Collection<Role> roles;
 }
